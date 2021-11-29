@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+</head>
+<body>
+    <div id="form" >
+        <input id='name' type="text" placeholder="Enter your name" >
+        <input id='email' type="email" placeholder="Enter your email address" >
+        <input type="password" name="" id="password" placeholder="Password">
+        <input id='username' type="text" placeholder="Enter your user-name" >
+        <input id='mobile' type="number" placeholder="Enter your mobile number" >
+       <button onclick="submit()"  id="submit">Submit</button>
+    </div>
+</body>
+</html>
+<script>
+    /*
+    {
+  "name": "MASAI School",
+  "email": "hello@masai.com"
+  "password": "secret",
+  "username": "masai-school",
+  "mobile": "9876543210",
+  "description": "A Transformation in education!" 
+}
+    */
+    async  function submit() {
+
+    let name = document.getElementById("name").value
+let data = {
+    name : document.getElementById("name").value,
+    email : document.getElementById("email").value,
+    password : document.getElementById("password").value,
+    username : document.getElementById("username").value,
+    mobile : document.getElementById("mobile").value,
+    description: "A Transformation in education!"
+}
+data = JSON.stringify(data)
+       console.log(data)
+    try {
+           let res = await fetch("https://masai-api-mocker.herokuapp.com/auth/register",{
+           "method" : "POST",
+           "body" : data,
+           
+       })
+       let adc = await res.json()
+       console.log(adc)
+    }
+    catch (err) {
+        console.log('err:', err)
+    }
+   }
+   
+  
+</script>
